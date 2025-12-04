@@ -15,6 +15,19 @@ def p1(input: list[str]) -> int:
         triple_count = triple_count+1 if triple else triple_count
     return double_count*triple_count
 
+def p2(input: list[str]) -> str:
+    for id1 in input:
+        for id2 in input:
+            if id1 != id2:
+                common_part = common_chars(id1, id2)
+                if len(common_part) == len(id1)-1:
+                    return common_part
+    return ""
+
+def common_chars(s1: str, s2: str) -> str:
+    return "".join(ch for i, ch in enumerate(s1) if ch == s2[i])
+
 if __name__ == "__main__":
     input = parse_input("solutions/day02/input.txt")
     print(f"[P1] The checksum is: {p1(input)}")
+    print(f"[P2] The common letters are: {p2(input)}")
